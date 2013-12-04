@@ -43,7 +43,7 @@ class Writer {
     stream_ << "\n";
   }
 
-  std::string toString() const { return stream_.str(); }
+  std::string str() const { return stream_.str(); }
 
   // Could just use pipe the output to GNU indent, but this is easy
   // enough
@@ -168,7 +168,7 @@ class Compiler {
     writer.writeLine("}");
     writer.writeLine("");
     writer.writeLine("}");
-    return writer.toString();
+    return writer.str();
   }
 
   static std::string codeGen(const Node& root) {
@@ -186,7 +186,7 @@ class Compiler {
     writer.writeLine("}");
     writer.writeLine("");
     writer.writeLine("}");
-    return writer.toString();
+    return writer.str();
   }
 
  private:
