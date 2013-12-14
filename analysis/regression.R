@@ -24,7 +24,7 @@ preprocess <- function(filename) {
   df$time_ns <- NULL
   
   ## Round num_features to nearest 100 (prettier numbers)
-  df$num_features = 100 * round(df$num_features / 100)
+  df$num_features <- 100 * round(df$num_features / 100)
   return(unique(df))
 }
 
