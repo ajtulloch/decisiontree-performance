@@ -18,6 +18,5 @@ To build the software, run `make build`.  The output is a binary in `build/perf`
 ## Running ##
 
 `make analysis`.
->>>>>>> Switched to CMake
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ajtulloch/decisiontree-performance/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
