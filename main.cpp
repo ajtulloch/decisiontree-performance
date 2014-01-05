@@ -5,6 +5,9 @@
 #include <iostream>
 
 #include <gflags/gflags.h>
+#include <boost/chrono/chrono.hpp>
+#include <boost/chrono/duration.hpp>
+#include <boost/chrono/process_cpu_clocks.hpp>
 
 #include "util.h"
 #include "node.h"
@@ -84,14 +87,14 @@ void benchmark(const std::string& description,
                const std::vector<FeatureVectorT>& featureVectors,
                size_t numIterations) {
   auto iteration = [&]() {
-    const auto start = std::chrono::high_resolution_clock::now();
+    const auto start = boost::chrono::process_real_cpu_clock::now();
     ValueT sum = 0.0;
     for (const auto& fv : featureVectors) {
       sum += evaluator.evaluate(fv);
     }
     doNotOptimizeAway(sum);
-    const auto end = std::chrono::high_resolution_clock::now();
-    const auto delta = std::chrono::duration_cast<std::chrono::nanoseconds>(
+    const auto end = boost::chrono::process_real_cpu_clock::now();
+    const auto delta = boost::chrono::duration_cast<boost::chrono::nanoseconds>(
         end - start);
     return std::chrono::nanoseconds(
         delta.count() / featureVectors.size());
