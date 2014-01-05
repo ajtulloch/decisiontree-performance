@@ -22,10 +22,11 @@ SWEEP = TreeArgs(
     num_features=np.linspace(50, 10000, 5))
 
 
-def run_command(args):
+def run_command(binary, args):
     logging.info("Running %s", args)
     cmd = [
-        "./main", "--output_csv",
+        binary,
+        "--output_csv",
         "-num_trees", str(args.num_trees),
         "-depth", str(args.depth),
         "-num_features", str(args.num_features),
@@ -44,7 +45,7 @@ def randomized(generator):
         yield el
 
 
-def raw_data_to_file(filename):
+def raw_data_to_file(binary, filename):
     """
     Sweeps over all parameter combinations, and outputs the generated
     CSV to the filename given as input.
@@ -59,7 +60,7 @@ def raw_data_to_file(filename):
     # in estimation.
     for combination in randomized(combinations):
         (num_trees, depth, num_features) = (int(el) for el in combination)
-        buffer.write(run_command(TreeArgs(
+        buffer.write(run_command(binary, TreeArgs(
             num_trees=num_trees,
             depth=depth,
             num_features=num_features)))

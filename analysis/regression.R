@@ -22,7 +22,7 @@ preprocess <- function(filename) {
   ## Unique the rows so we just have the minimum time for each experiment. 
   setkey(df, NULL)
   df$time_ns <- NULL
-  
+
   ## Round num_features to nearest 100 (prettier numbers)
   df$num_features <- 100 * round(df$num_features / 100)
   return(unique(df))
